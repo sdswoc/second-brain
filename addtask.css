@@ -1,0 +1,19 @@
+body{
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-container{
+    display: flex;
+    flex-direction: column;
+    /* margin: 50px; */
+
+}
+
+#task-input{
+    width: 100%;
+    height: 50%;
+}
