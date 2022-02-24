@@ -1,16 +1,26 @@
+var isSiginedIn = false;
+const signedin=document.getElementById("signed-in");
+const notsignedin=document.getElementById("not-signed-in");
+
 function onSignIn(googleUser) {
+  isSiginedIn = true;
   var profile = googleUser.getBasicProfile();
-  $(".g-signin2").css({ display: "none" });
-  $(".data").css({ display: "block" });
-  $("#profile-pic").attr({ src: profile.getImageUrl() });
-  $("#email").text(profile.getEmail());
+  
 }
 
 function signOut() {
+  isSiginedIn = false;
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(() => {
     alert("You have been logged out");
-    $(".s-signin2").css({ display: "block" });
-    $(".profile-info").css({ display: "none" });
   });
+}
+
+if (isSignedIn){
+  signedin.style.display=block;
+  notsignedin.style.display=none;
+  console.log('uff')
+}else{
+  signedin.style.display=none;
+  notsignedin.style.display=block;
 }
