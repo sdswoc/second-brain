@@ -1,0 +1,27 @@
+{
+  "name": "secondbrain-beta",
+  "version": "1.0.0",
+  "description": "A beta directory in my account to deploy on Heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server":"nodemon ./backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshitkg/secondbrain-beta.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshitkg/secondbrain-beta/issues"
+  },
+  "homepage": "https://github.com/akshitkg/secondbrain-beta#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
