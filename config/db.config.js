@@ -1,11 +1,11 @@
 const res = require("express/lib/response");
 const mongoose = require("mongoose");
-const mongoURI = 'mongodb+srv://akshitkg:WUgAtomtbFyTBPsW@cluster0.hldk2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const InitializeMongoSever = () => {
+const mongoURI =
+  "mongodb+srv://akshitkg:WUgAtomtbFyTBPsW@cluster0.hldk2.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const InitializeMongoSever = (conn) => {
   try {
-    mongoose.connect(mongoURI, () => {
-      console.log("Connection successful");
-    });
+    mongoose.connect(mongoURI, { useNewUrlParser: true });
+    conn = mongoose.connection;
   } catch (e) {
     throw new Error("Connection failed");
   }
