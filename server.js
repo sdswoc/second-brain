@@ -1,21 +1,24 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const InitializeMongoSever = require("./config/db.config");
-const session=require('express-session');
-const MongoStore = require('connect-mongo')(session);
-const User=require('./models/User')
+const mongoose=require("mongoose");
+const cors=require("cors");
+const conn = require("./config/db.config");
+const session = require("express-session");
+const MongoStore = require("connect-mongo")[session];
+const User = require("./models/User");
 const app = express();
 var conn; // Mongoose Connection
 const port = process.env.PORT || 4000;
 
 // Initialize mongo server
-InitializeMongoSever(conn);
+// InitializeMongoSever(conn);
 
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
-// GET Routes
+// GET Routes start
+
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
