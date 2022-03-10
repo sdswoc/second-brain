@@ -1,7 +1,10 @@
 const express = require("express");
+const InitializeMongoSever = require("./config/db.config");
 const app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
+
+InitializeMongoSever();
 
 // GET Routes
 app.get("/", (req, res) => {
@@ -17,7 +20,7 @@ app.get("/register", (req, res) => {
 });
 
 app.get("/home", (req, res) => {
-  res.render("home.ejs");
+  res.send("This is home page.");
 });
 
 
