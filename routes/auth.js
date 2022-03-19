@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const jwt=require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
+const session = require("express-session").Session;
+const MongoStore = require("connect-mongo");
 const { registerValidation, loginValidation } = require("../validation");
 
 const User = require("../models/User");
@@ -52,10 +54,10 @@ router.post("/login", async (req, res) => {
   const checkPassword = await bcrypt.compare(req.body.password, user.password);
   if (!checkPassword) return res.status(400).send("Password does not match");
 
-  // Create and Sign token
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-  res.header("auth-token", token).send(token);
+  // Create session
 
+  req.session.userId=user._id;
+  res.send('Logged In!')
   // res.send("logged in");
 });
 
