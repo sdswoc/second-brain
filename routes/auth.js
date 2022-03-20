@@ -6,7 +6,7 @@ const session = require("express-session").Session;
 const MongoStore = require("connect-mongo");
 const { registerValidation, loginValidation } = require("../validation");
 
-const User = require("../models/User");
+const User = require("../models/user");
 const { is } = require("express/lib/request");
 
 // GET Request for Login and Register
