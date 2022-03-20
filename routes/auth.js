@@ -9,6 +9,16 @@ const { registerValidation, loginValidation } = require("../validation");
 const User = require("../models/User");
 const { is } = require("express/lib/request");
 
+// GET Request for Login and Register
+router.get("/login", (req, res) => {
+  if (req.session.userId) return res.redirect("/");
+  res.render("auth/login");
+});
+router.get("/register", (req, res) => {
+  if (req.session.userId) return res.redirect("/");
+  res.render("auth/register");
+});
+
 // Register POST route
 router.post("/register", async (req, res) => {
   // Validate Schema
@@ -32,7 +42,7 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
     });
     const savedUser = await user.save();
-    res.send(savedUser._id);
+    res.redirect('/auth/login');
     console.log(`User saved to database!`);
   } catch (err) {
     res.status(400).send(err);
@@ -56,9 +66,19 @@ router.post("/login", async (req, res) => {
 
   // Create session
 
-  req.session.userId=user._id;
-  res.send('Logged In!')
+  req.session.userId = user._id;
+  res.redirect("/");
+  // res.redirect("/");
   // res.send("logged in");
 });
+
+router.get('/logout', (req, res) => {
+  req.session.destroy(err=>{
+    if (err) return res.redirect('/');
+    res.clearCookie(process.env.SESSION_NAME)
+    res.redirect('/auth/login')
+    // res.redirect('/auth/login')
+  })
+})
 
 module.exports = router;
