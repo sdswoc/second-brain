@@ -35,7 +35,7 @@ app.use(
     },
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,
-      ttl: 14 * 24 * 60 * 60,
+      ttl: 14 * 24 * 60 * 60, // Time to live
     }),
   })
 );
@@ -51,8 +51,7 @@ app.set("layout", "layouts/layout");
 // Route Handlers
 app.use("/auth", require("./routes/auth")); // Authorization Routes
 app.use("/", isLoggedIn, require("./routes/index"));
-app.use('/notes', isLoggedIn,require('./routes/notes'))
-
+app.use("/notes", isLoggedIn, require("./routes/notes"));
 
 // Run server
 app.listen(3000, () => {
