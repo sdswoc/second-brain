@@ -1,7 +1,14 @@
 All notes here
-<div id="create-notes-container">
+<div id="createNotes-container">
   <form action="/notes/new" method="POST">
-    <input type="text" name="newNote" placeholder="Enter your note here">
+    <input type="text" name="newNote" placeholder="Enter your note here" />
     <button type="submit">Create note</button>
   </form>
 </div>
+
+<div class="allUserNotes-container">
+    <% for (i=0; i<allUserNotes.length; i++) {%>
+        <div ><%= allUserNotes[i].note %> </div> 
+    <% } %> 
+</div>
+

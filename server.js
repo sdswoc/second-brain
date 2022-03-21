@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const app = express();
 const session = require("express-session");
-const cookie = require("cookie-parser");
+const cookieParser = require("cookie-parser");
 const MongoStore = require("connect-mongo");
 const bodyParser = require("body-parser");
 const expressLayouts = require("express-ejs-layouts");
@@ -20,8 +20,10 @@ mongoose.connect(process.env.DB_STRING, { useNewUrlParser: true }, () => {
   console.log(`Database Connected!`);
 });
 
+const db = mongoose.connection;
+
 // Middlewares
-app.use(cookie());
+app.use(cookieParser());
 
 app.use(
   session({

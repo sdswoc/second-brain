@@ -1,8 +1,21 @@
 const router = require("express").Router();
+const Notes = require("../models/Notes");
 const Note = require("../models/Notes");
 
-router.get("/", (req, res) => {
-  res.render("notes/notes");
+router.get("/", async (req, res) => {
+  try {
+    await Note.find({ noteId: req.session.userId }, (err, allUserNotes) => {
+      if (err) {
+        return res
+          .status(404)
+          .send("Something went wrong in fetching from database");
+      }
+      console.log(allUserNotes);
+      res.render("notes/notes",{allUserNotes: allUserNotes});
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.post("/new", async (req, res) => {
@@ -16,7 +29,7 @@ router.post("/new", async (req, res) => {
     });
     console.log("note constant created");
     await note.save();
-    res.send("Note created successfully");
+    res.redirect("/notes");
     console.log("Note saved successfully!");
   } catch (err) {
     console.log(err);
