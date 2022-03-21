@@ -1,4 +1,7 @@
 All notes here
 <div id="create-notes-container">
-    <input type="text" placeholder="Create Note" name="new-note">
+  <form action="/notes/new" method="POST">
+    <input type="text" name="newNote" placeholder="Enter your note here">
+    <button type="submit">Create note</button>
+  </form>
 </div>
