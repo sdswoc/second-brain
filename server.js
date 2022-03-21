@@ -50,10 +50,9 @@ app.set("layout", "layouts/layout");
 
 // Route Handlers
 app.use("/auth", require("./routes/auth")); // Authorization Routes
-app.get("/", isLoggedIn, require("./routes/index"));
-app.get("/posts", isLoggedIn, (req, res) => {
-  res.send("You have the access");
-});
+app.use("/", isLoggedIn, require("./routes/index"));
+app.use('/notes', isLoggedIn,require('./routes/notes'))
+
 
 // Run server
 app.listen(3000, () => {
