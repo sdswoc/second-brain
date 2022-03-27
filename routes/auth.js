@@ -42,7 +42,7 @@ router.post("/register", async (req, res) => {
       password: hashedPassword,
     });
     const savedUser = await user.save();
-    res.redirect('/auth/login');
+    res.redirect("/auth/login");
     console.log(`User saved to database!`);
   } catch (err) {
     res.status(400).send(err);
@@ -72,13 +72,14 @@ router.post("/login", async (req, res) => {
   // res.send("logged in");
 });
 
-router.get('/logout', (req, res) => {
-  req.session.destroy(err=>{
-    if (err) return res.redirect('/');
-    res.clearCookie(process.env.SESSION_NAME)
-    res.redirect('/auth/login')
+router.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) return res.redirect("/");
+    res.clearCookie(process.env.SESSION_NAME);
+    res.redirect("/auth/login");
+
     // res.redirect('/auth/login')
-  })
-})
+  });
+});
 
 module.exports = router;

@@ -54,6 +54,7 @@ app.set("layout", "layouts/layout");
 app.use("/auth", require("./routes/auth")); // Authorization Routes
 app.use("/", isLoggedIn, require("./routes/index"));
 app.use("/notes", isLoggedIn, require("./routes/notes"));
+app.use("/extension", require("./api/extensionHandler"));
 
 // Run server
 app.listen(3000, () => {

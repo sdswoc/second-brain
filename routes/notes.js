@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
       }
       console.log(allUserNotes);
       res.render("notes/notes",{allUserNotes: allUserNotes});
+      console.log(req.headers)
     });
   } catch (err) {
     console.log(err);
@@ -30,7 +31,7 @@ router.post("/new", async (req, res) => {
     console.log("note constant created");
     await note.save();
     res.redirect("/notes");
-    console.log("Note saved successfully!");
+    console.log(req);
   } catch (err) {
     console.log(err);
   }
