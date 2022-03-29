@@ -1,9 +1,5 @@
 const router = require("express").Router();
-const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const session = require("express-session").Session;
-const MongoStore = require("connect-mongo");
 const { registerValidation, loginValidation } = require("../validation");
 
 const User = require("../models/User");

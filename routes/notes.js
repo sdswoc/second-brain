@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 router.post("/new", async (req, res) => {
   try {
     console.log("Try initiated");
-    const newNote = await req.body.newNote;
+    const newNote = await req.body.newNote;4
     const id = await req.session.userId;
     const note = await new Note({
       noteId: id,
