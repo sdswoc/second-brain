@@ -56,7 +56,9 @@ app.use("/", isLoggedIn, require("./routes/index"));
 app.use("/notes", isLoggedIn, require("./routes/notes"));
 app.use("/extension", require("./api/extensionHandler"));
 
+const port = process.env.PORT || 3000;
+
 // Run server
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log(`Server is up...`);
 });
